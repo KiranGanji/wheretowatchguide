@@ -1,0 +1,95 @@
+---
+export const prerender = false;
+
+import Layout from '../../../layouts/Layout.astro';
+import { getGenreProviderMeta, getGenreProviderMovies } from '../../../lib/db';
+import {
+  formatRegion,
+  getCanonicalUrl,
+  getCurrentRegion,
+  getEnv,
+  posterUrl,
+  toTitleCase,
+  truncateMeta,
+} from '../../../lib/site';
+
+const genreSlug = (Astro.params.genre || '').toLowerCase();
+const providerSlug = (Astro.params.provider || '').toLowerCase();
+if (!genreSlug || !providerSlug) return Astro.redirect('/404');
+
+const env = getEnv(Astro.locals);
+const region = getCurrentRegion(Astro.request);
+const [meta, movies] = await Promise.all([
+  getGenreProviderMeta(env.DB, genreSlug, providerSlug, region),
+  getGenreProviderMovies(env.DB, genreSlug, providerSlug, region, 200),
+]);
+
+if (!meta && movies.length === 0) return Astro.redirect('/404');
+
+const genreName = meta?.genre ?? toTitleCase(genreSlug);
+const providerName = meta?.provider_name ?? toTitleCase(providerSlug);
+const country = formatRegion(region);
+const title = `${genreName} Movies on ${providerName} - Streaming Guide ${new Date().getFullYear()}`;
+const description = truncateMeta(
+  `Find ${genreName.toLowerCase()} movies streaming on ${providerName} in ${country}. Browse available titles with rent, buy, and subscription links.`
+);
+const canonical = getCanonicalUrl(Astro.request, `/genre/${genreSlug}/${providerSlug}`, env);
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: title,
+  numberOfItems: meta?.movie_count ?? movies.length,
+  itemListElement: movies.slice(0, 20).map((movie, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: movie.title,
+    url: `${new URL(canonical).origin}/movie/${movie.slug}`,
+  })),
+};
+
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=43200, stale-while-revalidate=86400'
+);
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <main>
+    <p class="eyebrow">{country}</p>
+    <h1>{genreName} Movies on {providerName}</h1>
+    <p>
+      Browse {genreName.toLowerCase()} titles available through {providerName} in {country}.
+      For the full provider catalog, see <a href={`/streaming/${providerSlug}/${region}`}>{providerName} in {country}</a>.
+    </p>
+
+    {movies.length === 0 ? (
+      <p class="notice">No matching movies are currently listed for this region.</p>
+    ) : (
+      <ul class="movie-list">
+        {movies.map((movie) => (
+          <li class="movie-card">
+            <a href={`/movie/${movie.slug}`}>
+              {movie.poster_path ? (
+                <img
+                  src={posterUrl(movie.poster_path, 'w342')}
+                  alt={`${movie.title} poster`}
+                  width="342"
+                  height="513"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="poster-placeholder" aria-hidden="true"></span>
+              )}
+              <strong>{movie.title}</strong>
+            </a>
+            <div class="badge-row">
+              {movie.release_date && <span class="badge">{String(movie.release_date).slice(0, 4)}</span>}
+              {movie.vote_average && <span class="badge">{Number(movie.vote_average).toFixed(1)}/10</span>}
+              {movie.type && <span class="badge">{movie.type}</span>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    )}
+  </main>
+</Layout>

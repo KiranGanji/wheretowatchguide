@@ -1,0 +1,21 @@
+name = "tmdb-seo"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "tmdb-seo"
+database_id = "ed9a3474-da58-4d3f-b954-a7f55ae525d0"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "00a519a0a87e494e90a211539bc3ab95"
+
+[vars]
+SITE_URL = "https://tmdb-seo.pages.dev"
+PUBLIC_GA_MEASUREMENT_ID = ""
+ADMIN_KEY = "6634779eb900296cfe951cbeabf2ebb9fe0cb7a83b9bafbf93fe7eacf57b1278"
+AMAZON_AFFILIATE_TAG = "wheretowatch9-21"
+APPLE_AFFILIATE_URL = ""
+GSC_VERIFICATION_CODE = ""

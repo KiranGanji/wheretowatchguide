@@ -1,0 +1,687 @@
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.6401ad6931be017b.sql
+│ 🌀 Uploading complete.
+│
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mD1 DB exceeded its CPU time limit and was reset.[0m
+
+
+[32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+Note that there is a newer version of Wrangler available (4.83.0). Consider checking whether upgrading resolves this error.
+? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+🤖 Using fallback value in non-interactive context: no
+🪵  Logs were written to "/Users/kiranganji/Library/Preferences/.wrangler/logs/wrangler-2026-04-19_14-08-14_240.log"
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+🌀 File already uploaded. Processing.
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1m{"D1_RESET_DO":true}[0m
+
+
+[32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+Note that there is a newer version of Wrangler available (4.83.0). Consider checking whether upgrading resolves this error.
+? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+🤖 Using fallback value in non-interactive context: no
+🪵  Logs were written to "/Users/kiranganji/Library/Preferences/.wrangler/logs/wrangler-2026-04-19_14-09-06_087.log"
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.e17f3951ccb7dd51.sql
+│ 🌀 Uploading complete.
+│
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mout of memory: SQLITE_NOMEM[0m
+
+
+[32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+Note that there is a newer version of Wrangler available (4.83.0). Consider checking whether upgrading resolves this error.
+? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+🤖 Using fallback value in non-interactive context: no
+🪵  Logs were written to "/Users/kiranganji/Library/Preferences/.wrangler/logs/wrangler-2026-04-19_14-09-11_799.log"
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.e2f4c1c577c1d854.sql
+│ 🌀 Uploading complete.
+│
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mD1 DB storage operation exceeded timeout which caused object to be reset.[0m
+
+
+[32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+Note that there is a newer version of Wrangler available (4.83.0). Consider checking whether upgrading resolves this error.
+? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+🤖 Using fallback value in non-interactive context: no
+🪵  Logs were written to "/Users/kiranganji/Library/Preferences/.wrangler/logs/wrangler-2026-04-19_14-09-56_269.log"
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+🌀 File already uploaded. Processing.
+
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1m{"D1_RESET_DO":true}[0m
+
+
+[32mIf you think this is a bug then please create an issue at https://github.com/cloudflare/workers-sdk/issues/new/choose[0m
+Note that there is a newer version of Wrangler available (4.83.0). Consider checking whether upgrading resolves this error.
+? Would you like to report this error to Cloudflare? Wrangler's output and the error details will be shared with the Wrangler team to help us diagnose and fix the issue.
+🤖 Using fallback value in non-interactive context: no
+🪵  Logs were written to "/Users/kiranganji/Library/Preferences/.wrangler/logs/wrangler-2026-04-19_14-10-58_240.log"
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.4d2a56158fbf8717.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 5133.56ms (789039 rows read, 393002 rows written)
+   Database is currently at bookmark 0000000c-0000000c-00005052-ee60105cc816f31dae15f0ab0f6c1f4b.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 789039,
+        "Rows written": 393002,
+        "Database size (MB)": "2209.80"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-0000000c-00005052-ee60105cc816f31dae15f0ab0f6c1f4b",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 5133.5636
+      },
+      "duration": 5133.5636,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2209804288,
+      "rows_read": 789039,
+      "rows_written": 393002,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.1ccee41b830d8783.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 682.24ms (1842251 rows read, 918465 rows written)
+   Database is currently at bookmark 0000000c-0000001c-00005052-d571f4eec25c2202b484394c9884224e.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 1842251,
+        "Rows written": 918465,
+        "Database size (MB)": "2220.79"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-0000001c-00005052-d571f4eec25c2202b484394c9884224e",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 682.2413
+      },
+      "duration": 682.2413,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2220785664,
+      "rows_read": 1842251,
+      "rows_written": 918465,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.5de0ad94562af6ac.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 1990.35ms (1842214 rows read, 918465 rows written)
+   Database is currently at bookmark 0000000c-0000002c-00005052-50a67bc2312d71b30dca5aeea82fbe77.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 1842214,
+        "Rows written": 918465,
+        "Database size (MB)": "2231.69"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-0000002c-00005052-50a67bc2312d71b30dca5aeea82fbe77",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 1990.3481
+      },
+      "duration": 1990.3481,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2231685120,
+      "rows_read": 1842214,
+      "rows_written": 918465,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.994085cb65b55bcb.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 680.08ms (469256 rows read, 232917 rows written)
+   Database is currently at bookmark 0000000c-00000039-00005052-cea1e740762e775d329515d7b8feddba.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 469256,
+        "Rows written": 232917,
+        "Database size (MB)": "2239.28"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-00000039-00005052-cea1e740762e775d329515d7b8feddba",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 680.0771
+      },
+      "duration": 680.0771,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2239279104,
+      "rows_read": 469256,
+      "rows_written": 232917,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.8be6f567f87f4935.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 671.77ms (467733 rows read, 232917 rows written)
+   Database is currently at bookmark 0000000c-00000042-00005052-8bb6670394aa0d99ad253911803b405d.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 467733,
+        "Rows written": 232917,
+        "Database size (MB)": "2243.21"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-00000042-00005052-8bb6670394aa0d99ad253911803b405d",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 671.769
+      },
+      "duration": 671.769,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2243207168,
+      "rows_read": 467733,
+      "rows_written": 232917,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.ac4eff71d4fd6fef.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 388.23ms (466871 rows read, 232917 rows written)
+   Database is currently at bookmark 0000000c-0000004a-00005052-a3f865e54c64a1e51c7be64b9815f081.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 466871,
+        "Rows written": 232917,
+        "Database size (MB)": "2245.36"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-0000004a-00005052-a3f865e54c64a1e51c7be64b9815f081",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 388.2328
+      },
+      "duration": 388.2328,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2245357568,
+      "rows_read": 466871,
+      "rows_written": 232917,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.99d5ccfb174b3dd4.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 741.10ms (697785 rows read, 347032 rows written)
+   Database is currently at bookmark 0000000c-00000057-00005052-d7f98ac879821ba9317ccfeb6a40a307.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 697785,
+        "Rows written": 347032,
+        "Database size (MB)": "2253.34"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-00000057-00005052-d7f98ac879821ba9317ccfeb6a40a307",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 741.1023
+      },
+      "duration": 741.1023,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2253340672,
+      "rows_read": 697785,
+      "rows_written": 347032,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.93e8598ed18d23e9.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 92.34ms (75039 rows read, 37258 rows written)
+   Database is currently at bookmark 0000000c-0000005e-00005052-0b717171a92794edd914265fc81f92f5.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 75039,
+        "Rows written": 37258,
+        "Database size (MB)": "2254.51"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-0000005e-00005052-0b717171a92794edd914265fc81f92f5",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 92.3408
+      },
+      "duration": 92.3408,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2254512128,
+      "rows_read": 75039,
+      "rows_written": 37258,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]
+⚠️  Warning: Unsupported macOS version detected (12.6.0). The Cloudflare Workers runtime may not work correctly on macOS versions below 13.5.0. Consider upgrading to macOS 13.5.0+ or using a DevContainer setup with a supported version of Linux (glibc 2.35+ required).
+
+ ⛅️ wrangler 3.114.17 (update available 4.83.0)
+-----------------------------------------------
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mThe version of Wrangler you are using is now out-of-date.[0m
+
+  Please update to the latest version to prevent critical errors.
+  Run `npm install --save-dev wrangler@4` to update to the latest version.
+  After installation, run Wrangler with `npx wrangler`.
+
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1m⚠️ This process may take some time, during which your D1 database will be unavailable to serve queries.[0m
+
+
+🌀 Executing on remote database tmdb-seo (ed9a3474-da58-4d3f-b954-a7f55ae525d0):
+🌀 To execute on your local development database, remove the --remote flag from your wrangler command.
+Note: if the execution fails to complete, your DB will return to its original state and you can safely retry.
+├ Checking if file needs uploading
+│
+├ 🌀 Uploading ed9a3474-da58-4d3f-b954-a7f55ae525d0.6232fe27c976b328.sql
+│ 🌀 Uploading complete.
+│
+🌀 Starting import...
+🌀 Processed 1 queries.
+🚣 Executed 1 queries in 2.46ms (2 rows read, 1 rows written)
+   Database is currently at bookmark 0000000c-00000064-00005052-dd1c295991ec11e6546e0b85ec1e8ca3.
+[
+  {
+    "results": [
+      {
+        "Total queries executed": 1,
+        "Rows read": 2,
+        "Rows written": 1,
+        "Database size (MB)": "2254.52"
+      }
+    ],
+    "success": true,
+    "finalBookmark": "0000000c-00000064-00005052-dd1c295991ec11e6546e0b85ec1e8ca3",
+    "meta": {
+      "served_by": "v3-prod",
+      "served_by_region": "APAC",
+      "served_by_colo": "SIN",
+      "served_by_primary": true,
+      "timings": {
+        "sql_duration_ms": 2.4599
+      },
+      "duration": 2.4599,
+      "changes": 1,
+      "last_row_id": 0,
+      "changed_db": true,
+      "size_after": 2254516224,
+      "rows_read": 2,
+      "rows_written": 1,
+      "num_tables": 8,
+      "total_attempts": 1
+    }
+  }
+]

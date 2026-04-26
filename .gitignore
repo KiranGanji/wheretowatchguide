@@ -1,0 +1,8 @@
+# Ignore dependency directories anywhere in the repo
+node_modules/
+
+# Ignore SQL artifacts anywhere in the repo
+*.sql
+
+# Ignore DuckDB database files anywhere in the repo
+*.duckdb

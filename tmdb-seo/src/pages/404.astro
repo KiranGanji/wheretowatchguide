@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCanonicalUrl, truncateMeta } from '../lib/site';
+
+const title = 'Page Not Found';
+const description = truncateMeta('The requested streaming guide page could not be found.');
+const canonical = getCanonicalUrl(Astro.request, '/404', Astro.locals.runtime?.env);
+Astro.response.status = 404;
+---
+
+<Layout title={title} description={description} canonical={canonical}>
+  <main>
+    <h1>Page Not Found</h1>
+    <p>The page is not available. Start again from the movie guide.</p>
+    <p><a class="button-link" href="/">Browse popular movies</a></p>
+  </main>
+</Layout>

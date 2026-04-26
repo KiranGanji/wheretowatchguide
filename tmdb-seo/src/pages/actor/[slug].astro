@@ -1,0 +1,82 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import { getActor, getActorMovies } from '../../lib/db';
+import {
+  getCanonicalUrl,
+  getEnv,
+  posterUrl,
+  truncateMeta,
+} from '../../lib/site';
+
+const actorSlug = Astro.params.slug;
+if (!actorSlug) return Astro.redirect('/404');
+
+const env = getEnv(Astro.locals);
+const actor = await getActor(env.DB, actorSlug);
+if (!actor) return Astro.redirect('/404');
+
+const movies = await getActorMovies(env.DB, actor.person_id);
+
+const title = `${actor.name} - Movies & Streaming Guide`;
+const description = truncateMeta(
+  `Browse ${actor.name} movies and open each title to find current streaming, rent, and buy options.`
+);
+const canonical = getCanonicalUrl(Astro.request, `/actor/${actor.slug}`, env);
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: actor.name,
+  sameAs: `https://www.themoviedb.org/person/${actor.person_id}`,
+};
+
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=86400, stale-while-revalidate=604800'
+);
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <main>
+    <p class="eyebrow">Actor movie guide</p>
+    <h1>{actor.name} Movies & Streaming Guide</h1>
+    <p>
+      Browse {actor.name} movie credits, then open a title to see current
+      streaming, rent, and buy options for your region.
+    </p>
+
+    <section>
+      <h2>Film Credits</h2>
+      {movies.length === 0 ? (
+        <p class="notice">No movie credits are listed for this actor yet.</p>
+      ) : (
+        <ul class="movie-list">
+          {movies.map((movie) => (
+            <li class="movie-card">
+              <a href={`/movie/${movie.slug}`}>
+                {movie.poster_path ? (
+                  <img
+                    src={posterUrl(movie.poster_path, 'w342')}
+                    alt={`${movie.title} poster`}
+                    width="342"
+                    height="513"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="poster-placeholder" aria-hidden="true"></span>
+                )}
+                <strong>{movie.title}</strong>
+              </a>
+              <div class="badge-row">
+                {movie.release_date && <span class="badge">{String(movie.release_date).slice(0, 4)}</span>}
+                {movie.character_name && <span class="badge">as {movie.character_name}</span>}
+                {movie.vote_average && <span class="badge">{Number(movie.vote_average).toFixed(1)}/10</span>}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  </main>
+</Layout>

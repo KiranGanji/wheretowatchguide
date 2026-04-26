@@ -1,0 +1,92 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, getCollectionMovies } from '../../lib/db';
+import {
+  formatRegion,
+  getCanonicalUrl,
+  getCurrentRegion,
+  getEnv,
+  posterUrl,
+  truncateMeta,
+} from '../../lib/site';
+
+const collectionId = Number.parseInt(Astro.params.id || '', 10);
+if (!collectionId) return Astro.redirect('/404');
+
+const env = getEnv(Astro.locals);
+const region = getCurrentRegion(Astro.request);
+const collection = await getCollection(env.DB, collectionId);
+if (!collection) return Astro.redirect('/404');
+
+const movies = await getCollectionMovies(env.DB, collectionId, region);
+const title = `Where to Watch ${collection.collection_name} Movies - Streaming Guide`;
+const description = truncateMeta(
+  `Watch ${collection.collection_name} movies in order and find streaming availability in ${formatRegion(region)}.`
+);
+const canonical = getCanonicalUrl(Astro.request, `/collection/${collectionId}`, env);
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: title,
+  mainEntity: {
+    '@type': 'ItemList',
+    numberOfItems: movies.length,
+    itemListElement: movies.map((movie, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: movie.title,
+      url: `${new URL(canonical).origin}/movie/${movie.slug}`,
+    })),
+  },
+};
+
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=86400, stale-while-revalidate=604800'
+);
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <main>
+    <p class="eyebrow">Streaming availability in {formatRegion(region)}</p>
+    <h1>{collection.collection_name} Movies in Order</h1>
+    <p>
+      {collection.movie_count ?? movies.length} movies tracked
+      {collection.first_year && collection.last_year && ` from ${collection.first_year} to ${collection.last_year}`}.
+    </p>
+
+    {movies.length === 0 ? (
+      <p class="notice">No movies are currently listed for this collection.</p>
+    ) : (
+      <ol class="movie-list">
+        {movies.map((movie) => (
+          <li class="movie-card">
+            <a href={`/movie/${movie.slug}`}>
+              {movie.poster_path ? (
+                <img
+                  src={posterUrl(movie.poster_path, 'w342')}
+                  alt={`${movie.title} poster`}
+                  width="342"
+                  height="513"
+                  loading="lazy"
+                />
+              ) : (
+                <span class="poster-placeholder" aria-hidden="true"></span>
+              )}
+              <strong>{movie.title}</strong>
+            </a>
+            <div class="badge-row">
+              {movie.release_date && <span class="badge">{String(movie.release_date).slice(0, 4)}</span>}
+              {movie.vote_average && <span class="badge">{Number(movie.vote_average).toFixed(1)}/10</span>}
+              {movie.providers?.split(',').slice(0, 3).map((provider) => (
+                <span class="badge">{provider}</span>
+              ))}
+            </div>
+          </li>
+        ))}
+      </ol>
+    )}
+  </main>
+</Layout>

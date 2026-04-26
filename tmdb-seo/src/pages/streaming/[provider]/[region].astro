@@ -1,0 +1,145 @@
+---
+export const prerender = false;
+
+import Layout from '../../../layouts/Layout.astro';
+import {
+  getProviderMovieCount,
+  getProviderMovies,
+  getProviderName,
+} from '../../../lib/db';
+import {
+  formatRegion,
+  getCanonicalUrl,
+  getEnv,
+  posterUrl,
+  toTitleCase,
+  truncateMeta,
+} from '../../../lib/site';
+
+const providerSlug = (Astro.params.provider || '').toLowerCase();
+const region = (Astro.params.region || 'US').toUpperCase();
+if (!providerSlug || !/^[A-Z]{2}$/.test(region)) return Astro.redirect('/404');
+
+const env = getEnv(Astro.locals);
+const pageSize = 60;
+const page = Math.max(1, Number.parseInt(Astro.url.searchParams.get('page') || '1', 10));
+const offset = (page - 1) * pageSize;
+
+const [providerNameResult, movies, total] = await Promise.all([
+  getProviderName(env.DB, providerSlug),
+  getProviderMovies(env.DB, providerSlug, region, pageSize, offset),
+  getProviderMovieCount(env.DB, providerSlug, region),
+]);
+
+const providerName = providerNameResult ?? toTitleCase(providerSlug);
+if (!movies.length && page === 1 && !providerNameResult) return Astro.redirect('/404');
+
+const country = formatRegion(region);
+const year = new Date().getFullYear();
+const title = `Movies on ${providerName} in ${country} - Full List ${year}`;
+const description = truncateMeta(
+  `Browse movies on ${providerName} in ${country}. Find what is streaming, available to rent, or available to buy with updated provider links.`
+);
+const canonical = getCanonicalUrl(Astro.request, `/streaming/${providerSlug}/${region}`, env);
+const genres = Array.from(
+  new Set(movies.flatMap((movie) => movie.genres?.split(',').filter(Boolean) ?? []))
+).sort((a, b) => a.localeCompare(b));
+const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: title,
+  numberOfItems: total,
+  itemListElement: movies.slice(0, 20).map((movie, index) => ({
+    '@type': 'ListItem',
+    position: offset + index + 1,
+    url: `${new URL(canonical).origin}/movie/${movie.slug}`,
+    name: movie.title,
+  })),
+};
+
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=43200, stale-while-revalidate=86400'
+);
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd}>
+  <main>
+    <p class="eyebrow">{total.toLocaleString()} titles tracked</p>
+    <h1>Movies on {providerName} in {country}</h1>
+    <p>
+      Browse streaming, rent, and buy availability for {providerName} in {country}.
+      Provider catalogs change often, so links are routed through the tracking redirect
+      before leaving the site.
+    </p>
+
+    {genres.length > 0 && (
+      <div class="toolbar">
+        <label for="genre-filter">Filter by genre</label>
+        <select id="genre-filter" data-genre-filter>
+          <option value="">All genres</option>
+          {genres.map((genre) => <option value={genre}>{genre}</option>)}
+        </select>
+      </div>
+    )}
+
+    {movies.length === 0 ? (
+      <p class="notice">No movies found on this page.</p>
+    ) : (
+      <ul class="movie-list" data-filter-list>
+        {movies.map((movie) => {
+          const movieGenres = movie.genres?.split(',').filter(Boolean) ?? [];
+          return (
+            <li class="movie-card" data-genres={movieGenres.join('|')}>
+              <a href={`/movie/${movie.slug}`}>
+                {movie.poster_path ? (
+                  <img
+                    src={posterUrl(movie.poster_path, 'w342')}
+                    alt={`${movie.title} poster`}
+                    width="342"
+                    height="513"
+                    loading="lazy"
+                  />
+                ) : (
+                  <span class="poster-placeholder" aria-hidden="true"></span>
+                )}
+                <strong>{movie.title}</strong>
+              </a>
+              <div class="badge-row">
+                {movie.release_date && <span class="badge">{String(movie.release_date).slice(0, 4)}</span>}
+                {movie.vote_average && <span class="badge">{Number(movie.vote_average).toFixed(1)}/10</span>}
+                {movie.type && <span class="badge">{movie.type}</span>}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    )}
+
+    <nav class="pagination" aria-label="Pagination">
+      {page > 1 && (
+        <a class="button-link" href={`/streaming/${providerSlug}/${region}?page=${page - 1}`}>Previous</a>
+      )}
+      {page < totalPages && (
+        <a class="button-link" href={`/streaming/${providerSlug}/${region}?page=${page + 1}`}>Next</a>
+      )}
+    </nav>
+
+    <script is:inline type="text/partytown" define:vars={{ providerName, region }}>
+      window.gtag&&gtag('event','provider_page_view',{provider:providerName,region});
+    </script>
+    <script is:inline>
+      const select = document.querySelector('[data-genre-filter]');
+      const items = Array.from(document.querySelectorAll('[data-filter-list] [data-genres]'));
+      select?.addEventListener('change', () => {
+        const selected = select.value;
+        for (const item of items) {
+          const genres = item.getAttribute('data-genres')?.split('|') ?? [];
+          item.hidden = Boolean(selected) && !genres.includes(selected);
+        }
+      });
+    </script>
+  </main>
+</Layout>

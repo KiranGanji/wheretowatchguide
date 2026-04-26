@@ -1,0 +1,214 @@
+---
+export const prerender = false;
+
+import Layout from '../../layouts/Layout.astro';
+import { buildAffiliateUrl, isAmazonPrimeProvider } from '../../lib/affiliate';
+import { getMovie, getMovieCast, getMovieProviders } from '../../lib/db';
+import {
+  formatRegion,
+  getCanonicalUrl,
+  getCurrentRegion,
+  getEnv,
+  posterUrl,
+  providerLogoUrl,
+  slugify,
+  truncateMeta,
+} from '../../lib/site';
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect('/404');
+
+const env = getEnv(Astro.locals);
+const movie = await getMovie(env.DB, slug);
+if (!movie) return Astro.redirect('/404');
+
+const region = getCurrentRegion(Astro.request);
+const providers = await getMovieProviders(env.DB, movie.id, region);
+const cast = await getMovieCast(env.DB, movie.id);
+
+const year = movie.release_date ? String(movie.release_date).slice(0, 4) : '';
+const topProviders = Array.from(new Set(providers.map((p) => p.provider_name))).slice(0, 3);
+const title = `Where to Watch ${movie.title}${year ? ` (${year})` : ''} - Streaming, Rent & Buy Guide`;
+const description = truncateMeta(
+  `Find out where to stream, rent or buy ${movie.title}${year ? ` (${year})` : ''}. Available on ${
+    topProviders.length ? topProviders.join(', ') : 'multiple platforms'
+  } and more. Updated ${new Date().toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })}.`
+);
+const canonical = getCanonicalUrl(Astro.request, `/movie/${movie.slug}`, env);
+const image = posterUrl(movie.poster_path, 'w500');
+const genres = movie.genres?.split(',').filter(Boolean) ?? [];
+const providerDestination = (provider: (typeof providers)[number]): string =>
+  buildAffiliateUrl(provider.provider_name, provider.link || '', env, {
+    movieTitle: movie.title,
+    region,
+  });
+
+const jsonLd: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Movie',
+  name: movie.title,
+  description: movie.overview,
+  dateCreated: movie.release_date,
+  image,
+  genre: genres,
+  duration: movie.runtime ? `PT${movie.runtime}M` : undefined,
+  ...(Number(movie.vote_count) > 10 && {
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: Number(movie.vote_average).toFixed(1),
+      ratingCount: movie.vote_count,
+      bestRating: '10',
+      worstRating: '1',
+    },
+  }),
+  potentialAction: providers
+    .filter((provider) => provider.link || isAmazonPrimeProvider(provider.provider_name))
+    .map((provider) => ({
+      '@type': 'WatchAction',
+      target: {
+        '@type': 'EntryPoint',
+        urlTemplate: providerDestination(provider),
+      },
+      expectsAcceptanceOf: {
+        '@type': 'Offer',
+        category: provider.type,
+        seller: {
+          '@type': 'Organization',
+          name: provider.provider_name,
+        },
+      },
+    })),
+};
+
+Astro.response.headers.set(
+  'Cache-Control',
+  'public, max-age=3600, stale-while-revalidate=86400'
+);
+
+const offerTypes = ['flatrate', 'free', 'ads', 'rent', 'buy'];
+const offerLabels: Record<string, string> = {
+  flatrate: 'Stream with subscription',
+  free: 'Watch free',
+  ads: 'Watch with ads',
+  rent: 'Rent',
+  buy: 'Buy',
+};
+---
+
+<Layout title={title} description={description} canonical={canonical} jsonLd={jsonLd} image={image}>
+  <main>
+    <p class="eyebrow">Streaming availability in {formatRegion(region)}</p>
+    <h1>Where to Watch {movie.title}{year && ` (${year})`}</h1>
+
+    <div class="detail-grid">
+      {image && (
+        <img
+          class="poster"
+          src={posterUrl(movie.poster_path, 'w342')}
+          alt={`${movie.title} poster`}
+          width="342"
+          height="513"
+          loading="eager"
+        />
+      )}
+
+      <div>
+        {movie.tagline && <p><em>{movie.tagline}</em></p>}
+        <p>{movie.overview}</p>
+
+        <div class="badge-row" aria-label="Movie details">
+          {genres.map((genre) => <span class="badge">{genre}</span>)}
+          {movie.runtime && <span class="badge">{movie.runtime} min</span>}
+          {Number(movie.vote_count) > 10 && (
+            <span class="badge">
+              {Number(movie.vote_average).toFixed(1)}/10 from {Number(movie.vote_count).toLocaleString()} votes
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <section aria-label="Streaming availability">
+      <h2>Where to Watch</h2>
+      {providers.length === 0 && (
+        <p class="notice">No streaming, rent, or buy offers are currently listed for {formatRegion(region)}.</p>
+      )}
+
+      {offerTypes.map((type) => {
+        const group = providers.filter((provider) => provider.type === type);
+        if (!group.length) return null;
+
+        return (
+          <div class="provider-group">
+            <h3>{offerLabels[type]}</h3>
+            <div class="provider-links">
+              {group.map((provider) => {
+                const logo = providerLogoUrl(provider.provider_logo_path);
+                const destination = provider.link || '';
+                const canLink = Boolean(destination || isAmazonPrimeProvider(provider.provider_name));
+                const query = new URLSearchParams({
+                  movie: String(movie.id),
+                  provider: provider.provider_name,
+                  region,
+                  title: movie.title,
+                });
+                if (destination) query.set('dest', destination);
+                const providerPath = provider.provider_slug || slugify(provider.provider_name);
+                const goUrl = canLink
+                  ? `/go/${encodeURIComponent(providerPath)}?${query.toString()}`
+                  : null;
+                const payload = JSON.stringify({
+                  provider: provider.provider_name,
+                  movie_id: String(movie.id),
+                  region,
+                  offer_type: type,
+                });
+
+                return goUrl ? (
+                  <a
+                    class="provider-link"
+                    href={goUrl}
+                    onclick={`window.gtag&&gtag('event','affiliate_click',${payload})`}
+                    rel="nofollow sponsored noopener"
+                    target="_blank"
+                  >
+                    {logo && (
+                      <img
+                        class="provider-logo"
+                        src={logo}
+                        alt=""
+                        width="26"
+                        height="26"
+                        loading="lazy"
+                      />
+                    )}
+                    {provider.provider_name}
+                  </a>
+                ) : (
+                  <span class="badge">{provider.provider_name}</span>
+                );
+              })}
+            </div>
+          </div>
+        );
+      })}
+    </section>
+
+    {cast.length > 0 && (
+      <section>
+        <h2>Cast</h2>
+        <ul>
+          {cast.map((member) => (
+            <li>
+              <a href={`/actor/${member.person_slug}`}>{member.name}</a>
+              {member.character_name && ` as ${member.character_name}`}
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </main>
+</Layout>
