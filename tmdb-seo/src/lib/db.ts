@@ -439,11 +439,11 @@ export async function getMovieSitemap(
   db: D1Database,
   limit: number,
   offset: number
-): Promise<Array<{ slug: string; release_date: string | null }>> {
-  return await all<{ slug: string; release_date: string | null }>(
+): Promise<Array<{ slug: string }>> {
+  return await all<{ slug: string }>(
     db
       .prepare(
-        `SELECT slug, release_date
+        `SELECT slug
          FROM movies
          ORDER BY popularity DESC
          LIMIT ? OFFSET ?`
@@ -476,10 +476,9 @@ export async function getProviderSitemap(
 ): Promise<Array<{ provider_slug: string; region: string }>> {
   return await all<{ provider_slug: string; region: string }>(
     db.prepare(
-      `SELECT provider_slug, region
-       FROM movie_providers
+      `SELECT DISTINCT provider_slug, region
+       FROM genre_platform_index
        WHERE provider_slug IS NOT NULL AND region IS NOT NULL
-       GROUP BY provider_slug, region
        ORDER BY provider_slug, region
        LIMIT 50000`
     )

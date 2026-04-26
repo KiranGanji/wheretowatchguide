@@ -2,7 +2,7 @@ import { defineConfig, passthroughImageService } from 'astro/config';
 import cloudflare from '@astrojs/cloudflare';
 import partytown from '@astrojs/partytown';
 
-const site = process.env.SITE_URL ?? 'https://example.com';
+const site = process.env.SITE_URL ?? 'https://wheretowatch.guide';
 
 export default defineConfig({
   site,

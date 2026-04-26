@@ -1,8 +1,5 @@
-export const prerender = false;
-
 import type { APIContext } from 'astro';
-import { movieSitemapResponse } from '../lib/sitemap';
 
-export async function GET(context: APIContext) {
-  return movieSitemapResponse(context, 4);
+export function GET(context: APIContext) {
+  return Response.redirect(new URL('/sitemap-movies/4.xml', context.request.url), 301);
 }

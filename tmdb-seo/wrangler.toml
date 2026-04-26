@@ -13,9 +13,8 @@ binding = "CACHE"
 id = "00a519a0a87e494e90a211539bc3ab95"
 
 [vars]
-SITE_URL = "https://tmdb-seo.pages.dev"
-PUBLIC_GA_MEASUREMENT_ID = ""
+SITE_URL = "https://wheretowatch.guide"
+PUBLIC_GA_MEASUREMENT_ID = "G-WRHMZSBBTB"
 ADMIN_KEY = "6634779eb900296cfe951cbeabf2ebb9fe0cb7a83b9bafbf93fe7eacf57b1278"
 AMAZON_AFFILIATE_TAG = "wheretowatch9-21"
 APPLE_AFFILIATE_URL = ""
-GSC_VERIFICATION_CODE = ""

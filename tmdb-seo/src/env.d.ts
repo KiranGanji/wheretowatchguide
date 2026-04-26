@@ -15,7 +15,6 @@ interface Env {
   ADMIN_KEY?: string;
   AMAZON_AFFILIATE_TAG?: string;
   APPLE_AFFILIATE_URL?: string;
-  GSC_VERIFICATION_CODE?: string;
 }
 
 declare namespace App {

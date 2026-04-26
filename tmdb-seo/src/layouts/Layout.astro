@@ -13,7 +13,6 @@ const { title, description, jsonLd, canonical, image } = Astro.props;
 const env = Astro.locals.runtime?.env;
 const GA_ID =
   env?.PUBLIC_GA_MEASUREMENT_ID || import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
-const GSC_CODE = env?.GSC_VERIFICATION_CODE || import.meta.env.GSC_VERIFICATION_CODE;
 const canonicalUrl = canonical ?? Astro.url.href;
 ---
 
@@ -50,10 +49,6 @@ const canonicalUrl = canonical ?? Astro.url.href;
           });
         </script>
       </>
-    )}
-
-    {GSC_CODE && GSC_CODE !== 'YOUR_GSC_VERIFICATION_CODE' && (
-      <meta name="google-site-verification" content={GSC_CODE} />
     )}
 
     {jsonLd && (
